@@ -1,5 +1,7 @@
 import streamlit as st
-from webapp.crypto_api import UPDATE_FREQ_SEC, get_response, transform
+
+from webapp.constants import UPDATE_FREQ_SEC
+from webapp.crypto_api import get_response, transform
 from webapp.utils import format_number_with_suffix
 
 st.set_page_config(page_title="Crypto Price", layout="centered")
@@ -10,7 +12,7 @@ def display_crypto_price():
     try:
         response = get_response()
         data = transform(response)
-
+ 
         price = data.get("price", 0)
         change_24h = data.get("percent_change_24h", 0)
         symbol = data.get("symbol", "")

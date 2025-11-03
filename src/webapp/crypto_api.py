@@ -1,17 +1,10 @@
-import os
 from typing import Any
 
-import dotenv
 import requests
 
-dotenv.load_dotenv()
+from webapp.constants import COINMARKETCAP_API_KEY, COINMARKETCAP_SYMBOLS
 
 _BASE_URL = "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest"
-
-COINMARKETCAP_API_KEY = os.getenv("COINMARKETCAP_API_KEY", "")
-COINMARKETCAP_SYMBOLS = os.getenv("COINMARKETCAP_SYMBOLS", "BTC")
-
-UPDATE_FREQ_SEC = int(os.getenv("UPDATE_FREQ_SEC", 60))
 
 
 def get_response() -> requests.Response:
