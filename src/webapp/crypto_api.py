@@ -2,15 +2,13 @@ from typing import Any
 
 import requests
 
-from webapp.constants import COINMARKETCAP_API_KEY, COINMARKETCAP_SYMBOLS
-
-_BASE_URL = "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest"
+from webapp.constants import BASE_URL, COINMARKETCAP_API_KEY, COINMARKETCAP_SYMBOLS
 
 
 def get_response() -> requests.Response:
     try:
         response = requests.get(
-            url=_BASE_URL,
+            url=BASE_URL,
             headers={
                 "Accept": "application/json",
                 "X-CMC_PRO_API_KEY": COINMARKETCAP_API_KEY,
