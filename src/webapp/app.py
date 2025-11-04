@@ -20,7 +20,7 @@ def display_crypto_price():
         st.metric(label=symbol, value=format_number_with_suffix(price), delta=f"{change_24h:.2f}%", border=True)
 
     except Exception as e:
-        st.error(f"Failed to load Bitcoin data: {e}")
+        st.error(f"Failed to load data: {e}")
 
 
 if __name__ == "__main__":
