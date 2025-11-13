@@ -1,50 +1,28 @@
-name: CI/CD - Build & Deploy to Azure
+name: MM2
 
 on:
   push:
-    branches:
-      - main
-      - feature_Maryam
+    branches: ["main", "feature_Maryam"]
   workflow_dispatch:
 
 jobs:
-  build_and_deploy:
+  build-and-push:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: |
-            mmo85/     - name: Build and push Docker image
+      - name: Build & push
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
           tags: |
             mmo85/coinmarket2:latest
+            mmo85/coinmarket2:${{ github.sha }}
 
-      
-      - name: Azure Login
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'webapp-mm2'         
-          images: 'mmo85/coinmarket2:latest'
