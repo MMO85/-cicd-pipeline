@@ -4,10 +4,13 @@ import dotenv
 
 dotenv.load_dotenv()
 
-BASE_URL = "https://pro-api.coinmarketcap.com/v2/cryptocurrency/quotes/latest"
+BASE_URL = "https://api.coingecko.com/api/v3/simple/price"
+
+# این اسمش همون قبلی می‌مونه ولی الان لیست CoinGecko IDs است نه سمبل CMC
+COINMARKETCAP_SYMBOLS = "bitcoin,ethereum,solana"  # مثلا BTC, ETH, SOL
+
 
 COINMARKETCAP_API_KEY = os.getenv("COINMARKETCAP_API_KEY", "")
-print("🔑 API KEY length:", len(COINMARKETCAP_API_KEY) if COINMARKETCAP_API_KEY else None)
-COINMARKETCAP_SYMBOLS = os.getenv("COINMARKETCAP_SYMBOLS", "BTC")
+
 
 UPDATE_FREQ_SEC = int(os.getenv("UPDATE_FREQ_SEC", 60))
