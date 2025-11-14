@@ -39,7 +39,7 @@ def test_response_and_transform(monkeypatch):
             pass
 
         def json(self):
-            # ساختار CoinGecko
+           
             return {
                 "bitcoin": {
                     "usd": 12345.67,
