@@ -12,7 +12,7 @@ project about devops and pipeline
 ## Setup Steps
 
 
-### 1. Install uv (Ultra-fast Python Package Manager)
+### 1. Install uv (Ultra-fast Python Package Manager).
 ```bash
 # Install uv
 pip install uv
