@@ -22,7 +22,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: install Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -33,7 +33,7 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
-      - name: Run pytest (capture log)
+      - name: Run pytest and write logs
         id: run_tests
         continue-on-error: true
         run: |
@@ -57,7 +57,7 @@ jobs:
     name: Build and push Docker image
     needs: tests
     runs-on: ubuntu-latest
-    if: needs.tests.result == 'success'
+    if: needs.tests.result == 'successful results'
     env:
       REGISTRY: docker.io
       IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/crypto-app
@@ -76,7 +76,7 @@ jobs:
         run: |
           docker build -t $REGISTRY/$IMAGE_NAME:$IMAGE_TAG .
 
-      - name: Push Docker image (tagged with sha)
+      - name: Push Docker image to docker Hub
         run: |
           docker push $REGISTRY/$IMAGE_NAME:$IMAGE_TAG
 

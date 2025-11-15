@@ -55,6 +55,6 @@ streamlit run src/webapp/app.py
 ## Development Workflow
 ### Running Tests
 ```bash
-# Run tests with uv
+# Run tests with uv.
 uv run pytest
 ```
